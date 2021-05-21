@@ -25,7 +25,7 @@ public class Compra {
 
     private String comentario;
 
-    private Boolean estado;
+    private String estado;
 
     //========================================
     //RELATION
@@ -36,10 +36,24 @@ public class Compra {
     private Cliente cliente;
 
 
-    @OneToMany(mappedBy = "producto") //uno a muchos
+    @OneToMany(mappedBy = "compra",cascade = {CascadeType.ALL}) //uno a muchos
     private List<ComprasProducto> productos; //productos de una compra
 
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<ComprasProducto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ComprasProducto> productos) {
+        this.productos = productos;
+    }
 
     //========================================
     //GETTER AND SETTER
@@ -85,11 +99,11 @@ public class Compra {
         this.comentario = comentario;
     }
 
-    public Boolean getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 }
